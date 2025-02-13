@@ -9,7 +9,7 @@ const App = () => {
     const [user,setUser]=useState({isLoggedIn:false, name:"Guest"});
 
     const checkLoggedIn=async()=>{
-        const resp=await fetch("http://localhost:1500/api/v1/isLoggedIn",{
+        const resp=await fetch(import.meta.env.VITE_BACKEND_URL + "/api/v1/isLoggedIn",{
             credentials:"include",
         });
         const respObj=await resp.json();
