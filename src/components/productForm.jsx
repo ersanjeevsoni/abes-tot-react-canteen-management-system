@@ -1,4 +1,13 @@
 const ProductForm = () => {
+    const postProduct = async (dataObj) => {
+        fetch("http://localhost:1500/api/v1/products", {
+            method: 'POST',
+            body: JSON.stringify(dataObj),
+            headers: {
+                'content-type': 'application/json',
+            },
+        });
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -6,8 +15,23 @@ const ProductForm = () => {
         const values = e.target;
         const title = values[0].value;
         const company = values[1].value;
+        const quantity = values[2].value;
+        const price = values[3].value;
+        const discount = values[4].value;
+        const thumbnail = values[4].value;
 
-        console.log(title, company);
+        const dataObj = {
+            title: title,
+            company: company || undefined,
+            quantity: quantity || undefined,
+            price: price,
+            discount: discount || undefined,
+            thumbnail: thumbnail || undefined
+        };
+
+        //  console.log(title, company);
+        console.log(dataObj);
+        postProduct(dataObj)
     };
 
     return (
